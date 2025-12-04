@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gonçalo Teixeira | Perfil Oficial</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* PALETA MINIMALISTA E NEUTRA */
+        :root {
+            --primary-red: #C70039; /* Acento de Hover */
+            --color-black: #111111; /* Preto principal (Fundo Escuro, Texto) */
+            --color-dark-gray: #333333; /* Cinza Escuro (Links/Títulos Secundários) */
+            --color-medium-gray: #AAAAAA; /* Cinza Médio (Bordas, Textos Secundários) */
+            --color-light-bg: #F8F8F8; /* Fundo Secundário */
+            --color-white: #FFFFFF;
+        }
+
+        /* RESET E TIPOGRAFIA INTER */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--color-dark-gray);
+            background-color: var(--color-white); 
+            scroll-padding-top: 70px;
+        }
+
+        h1, h2, h3 {
+            color: var(--color-black);
+            line-height: 1.15;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-dark-gray);
+            transition: color 0.3s, border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* HOVER PADRÃO: APENAS PARA ACENTOS */
+        a:hover {
+            color: var(--primary-red);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px; 
+            margin: 0 auto;
+        }
+
+        /* Utilitários */
+        .section-padding { padding: 100px 0; }
+        .bg-dark { background-color: var(--color-black); }
+        .bg-light { background-color: var(--color-light-bg); }
+        .text-light { color: var(--color-white) !important; }
+        .mt-40 { margin-top: 40px; }
+
+        /* TÍTULOS DE SECÇÃO */
+        .section-title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        /* BOTÕES */
+        .btn {
+            padding: 15px 40px;
+            border-radius: 3px; 
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            border: 2px solid var(--color-black);
+            letter-spacing: 0.5px;
+            color: var(--color-white); 
+            background-color: var(--color-black); 
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        .btn:hover {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+            color: var(--color-white);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(199, 0, 57, 0.4); 
+        }
+        
+        /* 1. CABEÇALHO & NAVEGAÇÃO */
+        #header-main {
+            background-color: var(--color-white);
+            border-bottom: 1px solid var(--color-light-bg);
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+        }
+        #header-main .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8em; font-weight: 800; color: var(--color-black); }
+        #main-nav ul { list-style: none; display: flex; }
+        #main-nav ul li { margin-left: 35px; }
+        #main-nav ul li a {
+            font-weight: 500; text-transform: uppercase; font-size: 0.9em; padding-bottom: 3px; border-bottom: 2px solid transparent;
+        }
+        #main-nav ul li a:hover { 
+            color: var(--primary-red);
+            border-bottom-color: var(--primary-red);
+        }
+
+        /* BOTÃO HAMBURGUER (MOBILE) */
+        #menu-toggle { 
+            display: none; 
+            background: none; 
+            border: none; 
+            cursor: pointer; 
+            padding: 10px; 
+            z-index: 1001; 
+        }
+        #menu-toggle .bar { 
+            display: block; 
+            width: 25px; 
+            height: 3px; 
+            margin: 5px auto; 
+            background-color: var(--color-black); 
+            transition: all 0.3s ease-in-out; 
+        }
+        /* ESTADOS QUANDO O MENU ESTÁ ATIVO (CRUZ E COR BRANCA) */
+        #menu-toggle.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        #menu-toggle.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+            background-color: var(--color-white); 
+        }
+        #menu-toggle.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+            background-color: var(--color-white); 
+        }
+
+
+        /* 2. SECÇÃO HERO */
+        #hero-section {
+            background: url('../../assets/images/hero.jpeg') no-repeat center center/cover; 
+            height: 95vh;
+            display: flex;
+            align-items: center; 
+            position: relative;
+        }
+
+        #hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.75); 
+        }
+
+        #hero-section .container {
+            display: flex; 
+            justify-content: center; 
+            width: 100%; 
+            text-align: center; 
+        }
+
+        .hero-content { 
+            position: relative; z-index: 10; color: var(--color-white); max-width: 800px; padding: 20px; margin: 0 auto; 
+        }
+        
+        .role-text {
+            font-size: 1.1em; font-weight: 400; letter-spacing: 6px; text-transform: uppercase; color: var(--color-medium-gray); margin-bottom: 5px;
+        }
+
+        .hero-content h1 {
+            font-size: 5.5em; 
+            color: var(--color-white); 
+            margin: 0 0 15px; 
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .tagline {
+            font-size: 1.5em; 
+            font-weight: 500;
+            color: var(--color-white); 
+            margin-bottom: 50px;
+        }
+        
+        /* 3. PERFIL & CARREIRA - LAYOUT INVERTIDO E IMAGEM CORRIGIDA */
+        #profile-section .profile-grid { display: flex; gap: 50px; align-items: flex-start; }
+        
+        .profile-photo-container {
+            flex-basis: 35%; 
+            max-width: 350px; 
+            width: 100%;
+            height: auto;
+            
+            border: 1px solid var(--color-medium-gray); 
+            background-color: var(--color-light-bg);
+            overflow: hidden; 
+        }
+        .profile-photo-container img {
+            width: 100%;
+            height: auto; 
+            object-fit: cover; 
+            display: block;
+        }
+
+        .profile-text-content { flex-basis: 65%; }
+
+        .profile-text-content p {
+            margin-bottom: 1.2em; 
+        }
+        .lead-text { 
+            border-left: 4px solid var(--color-medium-gray); 
+            padding-left: 20px; 
+            font-style: italic; 
+            margin-bottom: 30px; 
+        }
+
+        .data-table { width: 100%; margin: 30px 0; border-collapse: collapse; }
+        .data-table th, .data-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--color-light-bg); }
+        .data-table th { background-color: var(--color-light-bg); color: var(--color-dark-gray); width: 35%; font-weight: 600; }
+
+        .timeline-list { list-style: none; padding-left: 25px; border-left: 2px solid var(--color-medium-gray); margin-top: 25px; }
+        .timeline-list li { padding-left: 15px; margin-bottom: 20px; position: relative; font-weight: 500; }
+        .timeline-list li::before {
+            content: ''; position: absolute; left: -10px; top: 5px; width: 10px; height: 10px; background-color: var(--color-dark-gray); border-radius: 50%;
+        }
+
+        /* 4. ESTATÍSTICAS & HABILIDADES */
+        #stats-section { background-color: var(--color-black); }
+        #stats-section .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background-color: var(--color-dark-gray); margin-bottom: 60px; border: 1px solid var(--color-dark-gray); }
+        .stat-block { background-color: var(--color-black); padding: 30px 15px; transition: background-color 0.3s; }
+        .stat-block:hover { background-color: var(--color-dark-gray); }
+        .stat-number { font-size: 3em; font-weight: 800; color: var(--color-white); margin-bottom: 5px; }
+        .stat-desc { font-size: 0.9em; text-transform: uppercase; color: var(--color-medium-gray); letter-spacing: 1px; }
+
+        /* Skills Bar */
+        .skills-bar-container { max-width: 800px; margin: 40px auto 0; padding-top: 20px; }
+        .skill-bar { height: 25px; background-color: var(--color-dark-gray); margin-bottom: 15px; position: relative; border-radius: 3px; overflow: hidden; }
+        
+        .skill-bar::before { content: attr(data-skill); position: absolute; left: 10px; line-height: 25px; color: var(--color-white); font-weight: 600; z-index: 2; text-transform: uppercase; font-size: 0.8em; }
+        .skill-bar::after { content: attr(data-level); position: absolute; right: 10px; line-height: 25px; color: var(--color-white); font-weight: 600; z-index: 2; font-size: 0.8em; }
+
+        .skill-bar[style]::after, .skill-bar[style]::before { display: none; }
+        .skill-bar.animated::before, .skill-bar.animated::after { display: block; }
+        .skill-bar.animated {
+            background: linear-gradient(to right, var(--primary-red) var(--level), var(--color-dark-gray) var(--level));
+            transition: background 1.5s ease-in-out;
+        }
+        
+        /* 5. GALERIA & VÍDEOS */
+#media-section .video-container { max-width: 900px; margin: 0 auto 50px; position: relative; padding-bottom: 50%; height: 0; overflow: hidden; border: 1px solid var(--color-light-bg); }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.gallery-item { 
+    background-color: var(--color-light-bg); 
+    min-height: 200px; 
+    border: 1px solid var(--color-light-bg); 
+    overflow: hidden; 
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    /* ALTERAÇÃO CRÍTICA AQUI: Contain garante que a imagem é exibida na totalidade. */
+    object-fit: contain; 
+    display: block;
+}
+
+        /* 6. CONTACTO & REDES SOCIAIS */
+        #contact-section .contact-form { max-width: 600px; margin: 0 auto 50px; display: grid; gap: 20px; }
+        .contact-form input, .contact-form textarea { padding: 15px; border: 1px solid var(--color-medium-gray); border-radius: 3px; font-family: 'Inter', sans-serif; width: 100%; }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--color-dark-gray); outline: none; }
+        
+        .social-links { text-align: center; }
+        .social-icon { 
+            display: inline-block; margin: 0 10px; padding: 10px 20px; background-color: var(--color-dark-gray); color: var(--color-white); border-radius: 3px; font-weight: 600;
+        }
+        .social-icon:hover { 
+            background-color: var(--primary-red);
+        }
+
+        /* 7. RODAPÉ */
+        #footer-main {
+            background-color: var(--color-black);
+            color: var(--color-medium-gray);
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.8em;
+            font-weight: 300;
+        }
+
+        /* ---------------------------------------------------- */
+        /* MEDIA QUERIES (RESPONSIVIDADE E MENU HAMBURGUER) */
+        /* ---------------------------------------------------- */
+        @media (max-width: 900px) {
+            #menu-toggle { display: block; }
+            #main-nav { 
+                position: fixed; top: 0; right: -100%; height: 100%; width: 70%; max-width: 300px; 
+                background-color: var(--color-black); 
+                padding-top: 80px; transition: right 0.3s ease-in-out; z-index: 999; 
+            }
+            #main-nav.active { right: 0; }
+            #main-nav ul { flex-direction: column; align-items: center; }
+            #main-nav ul li { margin: 15px 0; width: 80%; text-align: center; border-bottom: 1px solid var(--color-dark-gray); padding-bottom: 10px; }
+            #main-nav ul li a { color: var(--color-white); }
+            #main-nav ul li a:hover { color: var(--primary-red); border-bottom-color: var(--primary-red); }
+
+            .hero-content h1 { font-size: 4em; }
+            .tagline { font-size: 1.2em; }
+            #profile-section .profile-grid { flex-direction: column; }
+            .profile-photo-container { max-width: 100%; } 
+            .stat-block:hover { background-color: var(--color-black); }
+        }
+
+        @media (max-width: 550px) {
+            #stats-section .stats-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    </head>
+<body>
+
+    <header id="header-main">
+        <div class="container">
+            <h1 class="logo">Gonçalo Teixeira</h1> 
+            
+            <button id="menu-toggle" aria-label="Abrir Menu de Navegação">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
+            <nav id="main-nav" aria-label="Navegação Principal">
+                <ul>
+                    <li><a href="#hero-section">Início</a></li>
+                    <li><a href="#profile-section">Carreira</a></li>
+                    <li><a href="#stats-section">Performance</a></li>
+                    <li><a href="#media-section">Media</a></li>
+                    <li><a href="#contact-section">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero-section" class="section-hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="role-text">Futebolista Profissional</p>
+                <h1>Gonçalo Teixeira</h1>
+                <p class="tagline">Médio Centro Ambidestro de Elite</p>
+                <a href="#profile-section" class="btn">Saber Mais</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section id="profile-section" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Perfil & Carreira</h2>
+                
+                <div class="profile-grid">
+                    <div class="profile-photo-container">
+                        <img src="/assets/images/profile.jpeg" alt="Foto de Perfil de Gonçalo Teixeira">
+                    </div>
+                    
+                    <div class="profile-text-content">
+                        <p class="lead-text">Gonçalo Teixeira é reconhecido pela sua rara <strong>ambidestria</strong>, visão tática e uma presença imponente. A sua progressão demonstra disciplina e empenho constante ao mais alto nível.</p>
+                        
+                        <p>Iniciando a sua formação nas camadas jovens do Sport Lisboa e Marinha, Gonçalo rapidamente se destacou pelo seu entendimento do jogo e capacidade de transição, tornando-se um ativo crucial para a equipa principal.</p>
+
+                        <h3>Destaques e Atributos</h3>
+                        <table class="data-table">
+                            <tr><th>Clube Atual</th><td>Sport Lisboa e Marinha</td></tr>
+                            <tr><th>Posição Primária</th><td>Ponta de Lança</td></tr>
+                            <tr><th>Habilidade Chave</th><td>Ambidestria</td></tr>
+                            <tr><th>Altura</th><td>1,73 m</td></tr>
+                        </table>
+
+                        <h3 class="mt-40">Titúlos</h3>
+                        <ul class="timeline-list">
+                            <li><strong>2023/24</strong> AF Leiria Taça Iniciados</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats-section" class="section-padding bg-dark">
+            <div class="container">
+                <h2 class="section-title text-light">Performance e Métricas Chave</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-block">
+                        <p class="stat-number">24</p>
+                        <p class="stat-desc">Jogos Oficiais</p>
+                    </div>
+                    <div class="stat-block">
+                        <p class="stat-number">1</p>
+                        <p class="stat-desc">Golos Marcados</p>
+                    </div>
+                    <div class="stat-block">
+                        <p class="stat-number">4.5</p>
+                        <p class="stat-desc">Média de Recuperações/Jogo</p>
+                    </div>
+                </div>
+
+                <h3 class="text-light mt-40">Habilidades Técnicas e Físicas</h3>
+                <div class="skills-bar-container">
+                    <div class="skill-bar" data-skill="Ambidestria" data-level="75%"></div>
+                    <div class="skill-bar" data-skill="Visão de Jogo" data-level="75%"></div>
+                    <div class="skill-bar" data-skill="Resistência" data-level="75%"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="media-section" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Media</h2>
+
+<div class="gallery-grid">
+    <div class="gallery-item">
+        <img src="/assets/images/play1.jpg" alt="Foto de destaque 1 de Gonçalo Teixeira">
+    </div>
+    
+    <div class="gallery-item">
+        <img src="/assets/images/play2.jpg" alt="Foto de destaque 2 de Gonçalo Teixeira">
+    </div>
+    
+    <div class="gallery-item">
+        <img src="/assets/images/play3.jpeg" alt="Foto de destaque 3 de Gonçalo Teixeira">
+    </div>
+</div>
+        </section>
+
+        <section id="contact-section" class="section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Contacto Profissional</h2>
+
+                <form class="contact-form" action="https://formspree.io/f/mldppwea">
+                    <input type="text" name="gt_nome" placeholder="Nome / Entidade" required>
+                    <input type="email" name="gt_email" placeholder="Email Profissional" required>
+                    <input type="text" name="subject" placeholder="Assunto" required>
+                    <textarea name="gt_mensagem" placeholder="Natureza da Proposta" rows="5" required></textarea>
+                    <button type="submit" class="btn">Enviar Solicitação</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer-main">
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Gonçalo Teixeira. Perfil Oficial.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // ----------------------------------------------------
+            // 1. SCROLL SUAVE
+            // ----------------------------------------------------
+            const navLinks = document.querySelectorAll('#main-nav a[href^="#"]'); 
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // ----------------------------------------------------
+            // 2. FUNÇÃO: MENU HAMBURGUER
+            // ----------------------------------------------------
+            const menuButton = document.getElementById('menu-toggle'); 
+            const navMenu = document.getElementById('main-nav'); 
+
+            if (menuButton && navMenu) {
+                menuButton.addEventListener('click', () => {
+                    menuButton.classList.toggle('active');
+                    navMenu.classList.toggle('active'); 
+                });
+
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        menuButton.classList.remove('active');
+                    });
+                });
+            }
+
+            // ----------------------------------------------------
+            // 3. ANIMAÇÃO DE SKILLS BAR
+            // ----------------------------------------------------
+            const skillBars = document.querySelectorAll('.skill-bar');
+            
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            function animateSkills() {
+                skillBars.forEach(bar => {
+                    if (isElementInViewport(bar) && !bar.classList.contains('animated')) {
+                        const level = bar.getAttribute('data-level');
+                        bar.style.setProperty('--level', level); 
+                        bar.classList.add('animated');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', animateSkills);
+            animateSkills(); 
+
+            // ----------------------------------------------------
+            // 4. ATUALIZAÇÃO DO ANO NO FOOTER
+            // ----------------------------------------------------
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                const currentYear = new Date().getFullYear();
+                yearSpan.textContent = currentYear;
+            }
+        });
+    </script>
+    </body>
+</html>
